@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\PostController;
+use App\Http\Middleware\Authenticate;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,7 +19,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
+// Auth::routes();
 
 // Aggiungiamo ->middleware('auth') per proteggere la rotta
 // Aggiungiamo ->prefix('admin') per fissare la base della URI
