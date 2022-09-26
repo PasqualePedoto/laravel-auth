@@ -1,5 +1,5 @@
 <template>
-    <div>Coming soon..</div>
+    <div id="suspance">Coming soon...</div>
 </template>
 
 <script>
@@ -12,4 +12,9 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+#suspance {
+    font-size: 50px;
+    text-align: center;
+}
+</style>

@@ -15,9 +15,13 @@ use App\Http\Middleware\Authenticate;
 |
 */
 
+// Pagina di Benvenuto
+
 Route::get('/', function () {
-    return view('home');
+    return view('welcome');
 });
+
+// Qui vengono gestite tutte le rotte per l'autenticazione
 
 Auth::routes();
 
@@ -38,5 +42,6 @@ Route::middleware('auth')->prefix('admin')->namespace('Admin')->name('admin.')->
         abort('404');
     })->where('any','.*');
 });
+
 
 Route::get('/home', 'HomeController@index')->name('home');
