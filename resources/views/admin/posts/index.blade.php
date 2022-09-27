@@ -52,10 +52,11 @@
 
                         {{-- Delete post --}}
                         <div class="mr-3">
-                            <a href="{{ route('admin.posts.destroy',$post) }}" class="btn btn-danger btn-small">
-                                <i class="fa-solid fa-trash"></i>
-                                {{-- <strong>Delete post</strong> --}}
-                            </a>
+                            <form action="{{ route('admin.posts.destroy',$post) }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button class="btn btn-danger"><i class="fa-solid fa-trash"></i></button>
+                            </form>
                         </div>
                     </td>
                 </tr>
