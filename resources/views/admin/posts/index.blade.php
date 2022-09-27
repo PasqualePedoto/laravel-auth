@@ -66,6 +66,11 @@
             </tr>
             @endempty
         </tbody>
-      </table>
-    </div>
+    </table>
+
+    <nav class="mt-5 d-flex align-items-center justify-content-center">
+        @if($posts->hasPages())
+        {{ $posts->links() }}
+        @endif
+    </nav>
 @endsection
