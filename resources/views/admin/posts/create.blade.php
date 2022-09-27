@@ -32,12 +32,8 @@
                 {{-- Button --}}
                 <div class="form-group col-6 d-flex align-items-end justify-content-end">
                     <button class="btn btn-success" type="submit">
-                        <i class="fa-solid fa-plus"></i>
-                        @if($post->exists())
-                            Add new post!
-                        @else
-                            Edit post!
-                        @endif
+                        Submit
+                        <i class="fa-solid fa-arrow-right"></i>
                     </button>
                 </div>
           </form>
