@@ -18,6 +18,10 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+    {{-- Font Awesome --}}
+    <script src="https://kit.fontawesome.com/ddb740f05b.js" crossorigin="anonymous"></script>
+    
 </head>
 <body>
     <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
