@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container">
-        @if($post->exists())
+        @if($post->exists)
             <h1 class="text-center mb-5">Edit post: {{ $post->title }}</h1>
             <form action="{{ route('admin.posts.update',$post) }}" method="POST" class="d-flex flex-wrap">
                 @method('PUT')

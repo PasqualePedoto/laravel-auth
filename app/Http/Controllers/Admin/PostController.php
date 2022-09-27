@@ -41,6 +41,17 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'title' => 'required|string',
+            'content' => 'nullable|string',
+            'image' => 'nullable|url'
+        ],[
+            'title.required' => 'Il titolo è un campo obbligatorio',
+            'title.string' => 'Il titolo deve essere composta da caratteri',
+            'title.content' => 'Il content deve essere composta da caratteri',
+            'image.url' => 'L\'immagine deve essere un url valida',
+        ]);
+
         $data = $request->all();
 
         $new_post = new Post();
@@ -83,6 +94,17 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
+        $request->validate([
+            'title' => ['required','string',Rule::unique('post')->ignore($post->id)],
+            'content' => 'nullable|string',
+            'image' => 'nullable|url'
+        ],[
+            'title.required' => 'Il titolo è un campo obbligatorio',
+            'title.string' => 'Il titolo deve essere composta da caratteri',
+            'title.content' => 'Il content deve essere composta da caratteri',
+            'image.url' => 'L\'immagine deve essere un url valida',
+        ]);
+
         $data = $request->all();
 
         $post->update($data);
