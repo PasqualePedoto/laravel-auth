@@ -36,6 +36,10 @@ Route::middleware('auth')->prefix('admin')->namespace('Admin')->name('admin.')->
 
     Route::resource('posts','PostController');
 
+    // Tutte le rotte delle categorie
+
+    Route::resource('categories','CategoryController');
+
     // Redirect verso il page not found dall'Admin
 
     Route::get('{any}', function(){
