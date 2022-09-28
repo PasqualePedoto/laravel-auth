@@ -36,23 +36,23 @@
                     <td>{{ $category->created_at }}</td>
                     <td>{{ $category->updated_at }}</td>
                     <td class="d-flex align-items-center justify-content-center">
-                        {{-- View post --}}
+                        {{-- View category --}}
                         <div class="mr-3">
                             <a href="{{ route('admin.categories.show',$category) }}" class="btn btn-success btn-small">
                                 <i class="fa-solid fa-eye"></i>
-                                {{-- <strong>View post</strong> --}}
+                                {{-- <strong>View category</strong> --}}
                             </a>
                         </div>
 
-                        {{-- Update post --}}
+                        {{-- Update category --}}
                         <div class="mr-3">
                             <a href="{{ route('admin.categories.edit',$category) }}" class="btn btn-warning btn-small">
                                 <i class="fa-solid fa-pencil"></i>
-                                {{-- <strong>Update post</strong> --}}
+                                {{-- <strong>Update category</strong> --}}
                             </a>
                         </div>
 
-                        {{-- Delete post --}}
+                        {{-- Delete category --}}
                         <div class="mr-3">
                             <form action="{{ route('admin.categories.destroy',$category) }}" method="POST">
                                 @csrf

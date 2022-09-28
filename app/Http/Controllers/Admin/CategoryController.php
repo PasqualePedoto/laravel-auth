@@ -26,7 +26,10 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        $categories = Category::all();
+
+        $category = new Category();
+        return view('admin.categories.create',compact('category','categories'));
     }
 
     /**
@@ -37,7 +40,23 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'label' => 'string|unique:categories',
+            'color' => 'string',
+        ],[
+            'label.string' => 'Il label deve essere una stringa',
+            'color.string' => 'Il colore deve essere una delle scelte impostate'
+        ]); 
+
+        $data = $request->all();
+
+        $category = new Category();
+
+        $category->fill($data);
+
+        $category->save();
+
+        return redirect()->route('admin.categories.show',compact('category'));
     }
 
     /**
@@ -46,9 +65,9 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Category $category)
     {
-        //
+        return view('admin.categories.show',compact('category'));
     }
 
     /**
@@ -80,8 +99,10 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Category $category)
     {
-        //
+        $category->delete();
+
+        return redirect()->route('admin.categories.index');
     }
 }

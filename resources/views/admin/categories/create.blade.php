@@ -2,31 +2,30 @@
 
 @section('content')
     <div class="container">
-        @if($post->exists)
-            <h1 class="text-center mb-5">Edit post: {{ $post->title }}</h1>
-            <form action="{{ route('admin.posts.update',$post) }}" method="POST" class="d-flex flex-wrap">
+        @if($category->exists)
+            <h1 class="text-center mb-5">Edit post: {{ $category->label }}</h1>
+            <form action="{{ route('admin.categories.update',$category) }}" method="POST" class="d-flex flex-wrap">
                 @method('PUT')
         @else
-            <h1 class="text-center mb-5">Create new post</h1>
-            <form action="{{ route('admin.posts.store') }}" method="POST" class="d-flex flex-wrap">
+            <h1 class="text-center mb-5">Create new category</h1>
+            <form action="{{ route('admin.categories.store',$category) }}" method="POST" class="d-flex flex-wrap">
         @endif
             @csrf
                 {{-- Title --}}
                 <div class="form-group col-6">
-                    <label for="title">Title</label>
-                    <input name="title" type="text" class="form-control" id="title" value="{{ old('title',$post->title) }}">
+                    <label for="label">Label</label>
+                    <input name="label" type="text" class="form-control" id="label" value="{{ old('label',$category->label) }}">
                 </div>
                 
-                {{-- Image --}}
+                {{-- Color --}}
                 <div class="form-group col-6">
-                    <label for="image">Image</label>
-                    <input name="image" type="text" class="form-control" id="image" value="{{ old('image',$post->image) }}">
-                </div>
-
-                {{-- Content --}}
-                <div class="form-group col-6">
-                    <label for="content">Content</label>
-                    <textarea class="form-control" id="content" rows="3" name="content">{{ old('content',$post->content) }}</textarea>
+                    <label for="color">Color</label>
+                    <select class="form-control" id="color" name="color">
+                        <option value="">Nessuna categoria scelta</option>
+                        @foreach ($categories as $category)
+                            <option value="{{ $category->id }}" @if(old('id') == $category->id) selected @endif>{{ $category->color }}</option>
+                        @endforeach
+                    </select>
                 </div>
 
                 {{-- Button --}}

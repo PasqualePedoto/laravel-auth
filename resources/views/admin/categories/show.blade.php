@@ -5,15 +5,14 @@
         <div class="card" >
             <div class="row no-gutters">
               <div class="col-12 d-flex">
-                <img src="{{ $post->image }}" alt="post-image" class="img-fluid w-50">
                 <div class="col-md-8">
                   <div class="card-body">
-                    <h5 class="card-title">{{ $post->title }}</h5>
-                    <p class="card-text">{{ $post->content }}</p>
+                    <h5 class="card-title">{{ $category->label }}</h5>
+                    <p class="card-text">{{ $category->color }}</p>
                     <p class="card-text">
                       <small class="text-muted">
-                        <div>{{ $post->created_at }}</div>
-                        <div>{{ $post->updated_at }}</div>
+                        <div>{{ $category->created_at }}</div>
+                        <div>{{ $category->updated_at }}</div>
                       </small>
                     </p>
                   </div>
@@ -24,30 +23,30 @@
         {{-- Buttons --}}
         <div class="d-flex justify-content-between my-3">
           <div class="d-flex justify-content-end">
-            {{-- View post --}}
+            {{-- View category --}}
             <div class="mr-3">
-              <a href="{{ route('admin.posts.show',$post) }}" class="btn btn-success btn-small">
+              <a href="{{ route('admin.categories.show',$category) }}" class="btn btn-success btn-small">
                 <i class="fa-solid fa-eye"></i>
-                <strong>View post</strong>
+                <strong>View category</strong>
               </a>
             </div>
 
-            {{-- Update post --}}
+            {{-- Update category --}}
             <div class="mr-3">
-              <a href="{{ route('admin.posts.edit',$post) }}" class="btn btn-warning btn-small">
+              <a href="{{ route('admin.categories.edit',$category) }}" class="btn btn-warning btn-small">
                 <i class="fa-solid fa-pencil"></i>
-                <strong>Update post</strong>
+                <strong>Update category</strong>
               </a>
             </div>
 
-            {{-- Delete post --}}
+            {{-- Delete category --}}
             <div class="mr-3">
-              <form action="{{ route('admin.posts.destroy',$post) }}" method="POST">
+              <form action="{{ route('admin.categories.destroy',$category) }}" method="POST">
                 @csrf
                 @method('DELETE')
                 <button class="btn btn-danger">
                   <i class="fa-solid fa-trash"></i>
-                  <strong>Delete post</strong>
+                  <strong>Delete category</strong>
                 </button>
             </form>
             </div>
@@ -55,7 +54,7 @@
 
           {{-- Return to lists --}}
           <div>
-            <a href="{{ route('admin.posts.index',$post) }}" class="btn btn-secondary btn-small">
+            <a href="{{ route('admin.categories.index') }}" class="btn btn-secondary btn-small">
               <i class="fa-solid fa-rotate-left"></i>
               <strong>Return to list</strong>
             </a>
