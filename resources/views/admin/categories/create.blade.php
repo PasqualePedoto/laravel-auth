@@ -22,8 +22,8 @@
                     <label for="color">Color</label>
                     <select class="form-control" id="color" name="color">
                         <option value="">Nessuna categoria scelta</option>
-                        @foreach ($categories as $category)
-                            <option value="{{ $category->id }}" @if(old('id') == $category->id) selected @endif>{{ $category->color }}</option>
+                        @foreach ($categories as $cat)
+                            <option value="{{ $cat->id }}" @if($cat->id == $category->id) selected @endif>{{ $cat->color }}</option>
                         @endforeach
                     </select>
                 </div>

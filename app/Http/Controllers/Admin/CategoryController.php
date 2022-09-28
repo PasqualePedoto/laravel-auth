@@ -76,9 +76,11 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Category $category)
     {
-        //
+        $categories = Category::all();
+
+        return view('admin.categories.create',compact('category','categories'));
     }
 
     /**
@@ -88,9 +90,21 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Category $category)
     {
-        //
+        $request->validate([
+            'label' => 'string|unique:categories',
+            'color' => 'string',
+        ],[
+            'label.string' => 'Il label deve essere una stringa',
+            'color.string' => 'Il colore deve essere una delle scelte impostate'
+        ]); 
+
+        $data = $request->all();
+
+        $category->update($data);
+
+        return redirect()->route('admin.categories.show',compact('category'));
     }
 
     /**
