@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
         @if($category->exists)
-            <h1 class="text-center mb-5">Edit post: {{ $category->label }}</h1>
+            <h1 class="text-center mb-5">Edit: {{ $category->label }}</h1>
             <form action="{{ route('admin.categories.update',$category) }}" method="POST" class="d-flex flex-wrap">
                 @method('PUT')
         @else
@@ -22,8 +22,8 @@
                     <label for="color">Color</label>
                     <select class="form-control" id="color" name="color">
                         <option value="">Nessuna categoria scelta</option>
-                        @foreach ($categories as $cat)
-                            <option value="{{ $cat->id }}" @if($cat->id == $category->id) selected @endif>{{ $cat->color }}</option>
+                        @foreach ($colors as $color)
+                            <option value="{{ $color['value'] }}" @if(old('color',$category->color)=== $color['value']) selected @endif>{{ $color['name'] }}</option>
                         @endforeach
                     </select>
                 </div>

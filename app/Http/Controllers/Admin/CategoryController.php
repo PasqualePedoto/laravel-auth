@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Category;
+use Illuminate\Validation\Rule;
 
 class CategoryController extends Controller
 {
@@ -26,10 +27,10 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        $categories = Category::all();
+        $colors = config('colors');
 
         $category = new Category();
-        return view('admin.categories.create',compact('category','categories'));
+        return view('admin.categories.create',compact('category','colors'));
     }
 
     /**
@@ -78,9 +79,9 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        $categories = Category::all();
+        $colors = config('colors');
 
-        return view('admin.categories.create',compact('category','categories'));
+        return view('admin.categories.create',compact('category','colors'));
     }
 
     /**
@@ -93,7 +94,7 @@ class CategoryController extends Controller
     public function update(Request $request, Category $category)
     {
         $request->validate([
-            'label' => 'string|unique:categories',
+            'label' => ['string',Rule::unique('categories')->ignore($category->id)],
             'color' => 'string',
         ],[
             'label.string' => 'Il label deve essere una stringa',
