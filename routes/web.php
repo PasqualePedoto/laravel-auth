@@ -32,6 +32,12 @@ Auth::routes();
 
 Route::middleware('auth')->prefix('admin')->namespace('Admin')->name('admin.')->group( function(){
 
+    // Tutte le rotte per gli utenti
+
+    Route::get('/users','UserController@index')->name('users.index');
+    // Route::get('/users','UserController@show')->name('users.show');
+    // Route::get('/users','UserController@edit')->name('users.edit');
+
     // Tutte le rotte dei posts
 
     Route::resource('posts','PostController');

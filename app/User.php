@@ -44,6 +44,6 @@ class User extends Authenticatable
     }
 
     public function userDetail(){
-        return $this->hasOne('App\Model\UserDetail');
+        return $this->hasOne('App\Models\UserDetail');
     }
 }
