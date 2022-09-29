@@ -5,7 +5,25 @@
         {{-- Title --}}
     <div class="d-flex align-items-center justify-content-between mb-3">
         <h1>Lista dei posts</h1>
-        <div>
+        <div class="d-flex align-items-center justify-content-center">
+            {{-- Posts filter --}}
+            <nav class="mr-3">
+                <form action="" method="">
+                    @csrf
+                    <div class="input-group">
+                        <select name="category_id" class="custom-select" id="inputGroupSelect04" aria-label="Example select with button addon">
+                            <option value="">Tutte le categorie</option>
+                            @foreach ($categories as $category)
+                                <option value="{{ $category->id }}" @if($selected_category == $category->id) selected @endif>{{ $category->label }}</option>
+                            @endforeach
+                        </select>
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-secondary" type="submit">Filtra</button>
+                        </div>
+                    </div>
+                </form>
+            </nav>
+            {{-- Add new post --}}
             <a href="{{ route('admin.posts.create') }}" class="btn btn-success">
                 <i class="fa-solid fa-square-plus mr-2"></i>
                 <strong>Add new post</strong>
@@ -62,7 +80,7 @@
                 </tr>
             @empty
             <tr>
-                <th scope="row">Non ci sono posts</th>
+                <th colspan="6" class="text-center">Non ci sono posts</th>
             </tr>
             @endempty
         </tbody>

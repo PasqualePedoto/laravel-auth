@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Post;
+use App\Models\Category;
 
 class PostController extends Controller
 {
@@ -13,13 +14,25 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $posts = Post::orderBy('updated_at','DESC')
-        ->orderBy('created_at','DESC')
-        ->paginate(10);
+        // Preleviamo la categoria selezionata che è passata nella query string, per questo
+        // è chiamata query
+        $category_id = $request->query('category_id');
+
+        // Definiamo la query base per prelevare i posts
+        $query = Post::orderBy('updated_at','DESC')->orderBy('created_at','DESC');
+
+        // Ternario che determina se filtrare o meno in base alla presenza del category_id
+        $posts = $category_id ? $query->where('category_id',$category_id)->paginate(10) : $query->paginate(10);
+ 
+        // Preleviamo tutte le categorie
+        $categories = Category::all();
+
+        // Passiamo il dato alla vista per mantenere selected la option scelta
+        $selected_category = $category_id;
         
-        return view('admin.posts.index',compact('posts'));
+        return view('admin.posts.index',compact('posts','categories','selected_category'));
     }
 
     /**
