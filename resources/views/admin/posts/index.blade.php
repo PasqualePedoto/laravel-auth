@@ -36,6 +36,7 @@
         <thead class="thead-dark">
           <tr>
             <th scope="col">#</th>
+            <th scope="col">Author</th>
             <th scope="col">title</th>
             <th scope="col">content</th>
             <th scope="col">created_at</th>
@@ -47,6 +48,7 @@
             @forelse($posts as $post)
                 <tr>
                     <th scope="row">{{ $post->id }}</th>
+                    <td>{{ $post->author->name }}</td>
                     <td>{{ $post->title }}</td>
                     <td>{{ $post->content }}</td>
                     <td>{{ $post->created_at }}</td>
@@ -59,7 +61,6 @@
                                 {{-- <strong>View post</strong> --}}
                             </a>
                         </div>
-
                         {{-- Update post --}}
                         <div class="mr-3">
                             <a href="{{ route('admin.posts.edit',$post) }}" class="btn btn-warning btn-small">
@@ -73,14 +74,14 @@
                             <form action="{{ route('admin.posts.destroy',$post) }}" method="POST">
                                 @csrf
                                 @method('DELETE')
-                                <button class="btn btn-danger"><i class="fa-solid fa-trash"></i></button>
+                                <button class="btn btn-danger" @if($post->user_id != Auth::id()) disabled @endif><i class="fa-solid fa-trash"></i></button>
                             </form>
                         </div>
                     </td>
                 </tr>
             @empty
             <tr>
-                <th colspan="6" class="text-center">Non ci sono posts</th>
+                <th colspan="7" class="text-center">Non ci sono posts</th>
             </tr>
             @endempty
         </tbody>

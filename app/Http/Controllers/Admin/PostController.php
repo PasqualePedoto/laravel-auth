@@ -6,7 +6,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Models\Category;
-use App\Http\Controllers\Admin\Auth;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
 
 class PostController extends Controller
 {
@@ -113,21 +115,22 @@ class PostController extends Controller
     public function update(Request $request, Post $post)
     {
         $request->validate([
-            'title' => ['required','string',Rule::unique('post')->ignore($post->id)],
+            'title' => ['required','string',Rule::unique('posts')->ignore($post->id)],
             'content' => 'nullable|string',
-            'image' => 'nullable|url'
+            'image' => 'nullable'
         ],[
             'title.required' => 'Il titolo è un campo obbligatorio',
             'title.string' => 'Il titolo deve essere composta da caratteri',
             'title.content' => 'Il content deve essere composta da caratteri',
-            'image.url' => 'L\'immagine deve essere un url valida',
         ]);
 
         $data = $request->all();
 
+        if(array_key_exists('my_post',$data)) $post->user_id = Auth::id();
+
         $post->update($data);
 
-        return redirect()->route('admin.posts.index');
+        return redirect()->route('admin.posts.show',compact('post'));
     }
 
     /**
