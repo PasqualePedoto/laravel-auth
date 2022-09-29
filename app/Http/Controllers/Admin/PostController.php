@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Models\Category;
+use App\Http\Controllers\Admin\Auth;
 
 class PostController extends Controller
 {
@@ -65,11 +66,15 @@ class PostController extends Controller
             'image.url' => 'L\'immagine deve essere un url valida',
         ]);
 
+        
+
         $data = $request->all();
 
         $new_post = new Post();
 
         $new_post->fill($data);
+
+        $new_post->user_id = Auth::id();
 
         $new_post->save();
 
