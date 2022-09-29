@@ -23,6 +23,7 @@ class PostSeeder extends Seeder
             $categories_ids = Category::pluck('id')->toArray();
 
             $new_post->title = $faker->sentence();
+            $new_post->user_id = 1;
             $new_post->content = $faker->paragraph(2);
             $new_post->image = $faker->word('animals',true);
             $new_post->category_id = Arr::random($categories_ids);
