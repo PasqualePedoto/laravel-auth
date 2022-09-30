@@ -126,7 +126,7 @@ class PostController extends Controller
         $request->validate([
             'title' => ['required','string',Rule::unique('posts')->ignore($post->id)],
             'content' => 'nullable|string',
-            'image' => 'nullable|url'
+            'image' => 'nullable'
         ],[
             'title.required' => 'Il titolo è un campo obbligatorio',
             'title.string' => 'Il titolo deve essere composta da caratteri',
