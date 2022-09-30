@@ -39,6 +39,17 @@
                     </div>
                 @endif
 
+                {{-- Tags --}}
+                <div class="form-group col-6">
+                    <h5>Tag</h5>
+                    @forelse ($tags as $tag)
+                        <label for="tag-{{ $tag->label }}" class="mr-4">{{ $tag->label }}</label>
+                        <input name="tags[]" type="checkbox" class="form-check-input" id="tag-{{ $tag->label }}" value="{{ $tag->id }}">
+                    @empty
+                        <p>-</p>
+                    @endforelse
+                </div>
+
                 {{-- Button --}}
                 <div class="form-group col-6 d-flex align-items-end justify-content-end">
                     <button class="btn btn-success" type="submit">

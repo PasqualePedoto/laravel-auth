@@ -4,8 +4,11 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+
 use App\Models\Post;
 use App\Models\Category;
+use App\Models\Tag;
+
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
@@ -46,7 +49,9 @@ class PostController extends Controller
     public function create()
     {
         $post = new Post();
-        return view('admin.posts.create',compact('post'));
+        $tags = Tag::select('id','label')->get();
+
+        return view('admin.posts.create',compact('post','tags'));
     }
 
     /**
