@@ -54,7 +54,7 @@
                     <td>{{ $post->content }}</td>
                     <td>
                         @forelse ($post->tags as $tag)
-                            <span class="mr-2">{{ $tag->label }}</span>
+                            <span class="badge badge-pill" style="background-color: {{ $tag->color }}">{{ $tag->label }}</span>
                         @empty
                             -
                         @endforelse
