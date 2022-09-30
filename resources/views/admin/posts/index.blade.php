@@ -39,6 +39,7 @@
             <th scope="col">Author</th>
             <th scope="col">title</th>
             <th scope="col">content</th>
+            <th scope="col">tags</th>
             <th scope="col">created_at</th>
             <th scope="col">updated_at</th>
             <th scope="col"></th>
@@ -51,6 +52,13 @@
                     <td>{{ $post->author->name }}</td>
                     <td>{{ $post->title }}</td>
                     <td>{{ $post->content }}</td>
+                    <td>
+                        @forelse ($post->tags as $tag)
+                            <span class="mr-2">{{ $tag->label }}</span>
+                        @empty
+                            -
+                        @endforelse
+                    </td>
                     <td>{{ $post->created_at }}</td>
                     <td>{{ $post->updated_at }}</td>
                     <td class="d-flex align-items-center justify-content-center">
@@ -81,7 +89,7 @@
                 </tr>
             @empty
             <tr>
-                <th colspan="7" class="text-center">Non ci sono posts</th>
+                <th colspan="8" class="text-center">Non ci sono posts</th>
             </tr>
             @endempty
         </tbody>

@@ -46,7 +46,14 @@
                     <h5>Tag</h5>
                     @forelse ($tags as $tag)
                         <label for="tag-{{ $tag->label }}" class="mr-4">{{ $tag->label }}</label>
-                        <input name="tags[]" type="checkbox" class="form-check-input" id="tag-{{ $tag->label }}" value="{{ $tag->id }}">
+                        <input 
+                            name="tags[]" 
+                            type="checkbox" 
+                            class="form-check-input" 
+                            id="tag-{{ $tag->label }}" 
+                            value="{{ $tag->id }}"
+                            @if(in_array($tag->id,old('tags',$prev_tags ?? []))) checked @endif
+                            >
                     @empty
                         <p>-</p>
                     @endforelse
