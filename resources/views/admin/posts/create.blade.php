@@ -29,14 +29,16 @@
                     <textarea class="form-control" id="content" rows="3" name="content">{{ old('content',$post->content) }}</textarea>
                 </div>
 
-                @if($post->user_id != Auth::id())
-                    {{-- Post is mine? --}}
-                    <div class="d-flex align-items-end justify-content-end col-6">
-                        <div class="form-group form-check">
-                            <label for="my_post" class="mr-4">Vuoi che il post sia tuo? Spunta qui</label>
-                            <input name="my_post" type="checkbox" class="form-check-input" id="my_post" value="1">
+                @if(!Route::is('admin.posts.create'))
+                    @if($post->user_id != Auth::id())
+                        {{-- Post is mine? --}}
+                        <div class="d-flex align-items-end justify-content-end col-6">
+                            <div class="form-group form-check">
+                                <label for="my_post" class="mr-4">Vuoi che il post sia tuo? Spunta qui</label>
+                                <input name="my_post" type="checkbox" class="form-check-input" id="my_post" value="1">
+                            </div>
                         </div>
-                    </div>
+                    @endif
                 @endif
 
                 {{-- Tags --}}

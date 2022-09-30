@@ -65,15 +65,14 @@ class PostController extends Controller
         $request->validate([
             'title' => 'required|string',
             'content' => 'nullable|string',
-            'image' => 'nullable|url'
+            'image' => 'nullable|url',
+            'tags' => 'nullable|exists:tags,id',
         ],[
             'title.required' => 'Il titolo è un campo obbligatorio',
             'title.string' => 'Il titolo deve essere composta da caratteri',
             'title.content' => 'Il content deve essere composta da caratteri',
             'image.url' => 'L\'immagine deve essere un url valida',
         ]);
-
-        
 
         $data = $request->all();
 
@@ -84,6 +83,8 @@ class PostController extends Controller
         $new_post->user_id = Auth::id();
 
         $new_post->save();
+
+        if(array_key_exists('tags',$data)) $new_post->tags()->attach($data['tags']);
 
         return redirect()->route('admin.posts.index');
     }
