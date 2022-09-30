@@ -10,6 +10,14 @@
                   <div class="card-body">
                     <h5 class="card-title">{{ $post->title }}</h5>
                     <p class="card-text">{{ $post->content }}</p>
+                    <div>
+                      <h5>Tags</h5>
+                      @forelse($post->tags as $tag)
+                        <span class="badge badge-pill" style="background-color: {{ $tag->color }}">{{ $tag->label }}</span>
+                      @empty
+                        -
+                      @endforelse
+                    </div>
                     <p class="card-text">
                       <small class="text-muted">
                         <div>{{ $post->created_at }}</div>
