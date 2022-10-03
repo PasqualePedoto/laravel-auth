@@ -46,4 +46,8 @@ class User extends Authenticatable
     public function userDetail(){
         return $this->hasOne('App\Models\UserDetail');
     }
+
+    public function getName(){
+        return $this->name;
+    }
 }

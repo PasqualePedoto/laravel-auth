@@ -49,7 +49,7 @@
             @forelse($posts as $post)
                 <tr>
                     <th scope="row">{{ $post->id }}</th>
-                    <td>{{ $post->author->name }}</td>
+                    <td>{{ $post->author->getName() }}</td> 
                     <td>{{ $post->title }}</td>
                     <td>{{ $post->content }}</td>
                     <td>

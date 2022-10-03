@@ -31,7 +31,7 @@ class PostController extends Controller
 
         // Ternario che determina se filtrare o meno in base alla presenza del category_id
         $posts = $category_id ? $query->where('category_id',$category_id)->paginate(10) : $query->paginate(10);
- 
+
         // Preleviamo tutte le categorie
         $categories = Category::all();
 
