@@ -21,21 +21,25 @@
 
     {{-- Font Awesome --}}
     <script src="https://kit.fontawesome.com/ddb740f05b.js" crossorigin="anonymous"></script>
-    
 </head>
+<style>
+    .active{
+        color: red;
+    }
+</style>
 <body>
     <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
         <div class="container">
             <a class="navbar-brand" href="{{ url('/') }}">
                 {{ config('app.name', 'Laravel') }}
             </a>
-            <a class="navbar-brand" href="{{ route('admin.posts.index') }}">
+            <a class="navbar-brand @if(Route::is('admin.posts.index')) active @endif" href="{{ route('admin.posts.index') }}">
                 Posts
             </a>
-            <a class="navbar-brand" href="{{ route('admin.categories.index') }}">
+            <a class="navbar-brand @if(Route::is('admin.categories.index')) active @endif" href="{{ route('admin.categories.index') }}">
                 Categories
             </a>
-            <a class="navbar-brand" href="{{ route('admin.users.index') }}">
+            <a class="navbar-brand @if(Route::is('admin.users.index')) active @endif" href="{{ route('admin.users.index') }}">
                 Users
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -67,12 +71,14 @@
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="{{ route('admin.userdetails.edit') }}">
+                                    Profilo
+                                </a>
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                    onclick="event.preventDefault();
                                                  document.getElementById('logout-form').submit();">
                                     {{ __('Logout') }}
                                 </a>
-
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                     @csrf
                                 </form>
