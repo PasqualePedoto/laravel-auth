@@ -35,12 +35,11 @@ Route::middleware('auth')->prefix('admin')->namespace('Admin')->name('admin.')->
     // Tutte le rotte per gli utenti
 
     Route::get('/users','UserController@index')->name('users.index');
-    // Route::get('/users','UserController@show')->name('users.show');
-    // Route::get('/users','UserController@edit')->name('users.edit');
-
+    
     // Rotta per l'edit del profilo
 
     Route::get('/userdetails/edit','UserDetailController@edit')->name('userdetails.edit');
+    Route::put('/userdetails/update','UserDetailController@update')->name('userdetails.update');
 
     // Tutte le rotte dei posts
 
