@@ -30,6 +30,6 @@ class Post extends Model
     // FUNCTIONS
 
     public function getFormattedDate($date){
-        return  Carbon::create($date)->format('d-m-Y');
+        return  Carbon::create($date)->format('d-m-Y H:i:s');
     }
 }
