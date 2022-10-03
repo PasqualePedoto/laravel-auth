@@ -59,8 +59,8 @@
                             -
                         @endforelse
                     </td>
-                    <td>{{ $post->created_at }}</td>
-                    <td>{{ $post->updated_at }}</td>
+                    <td>{{ $post->getFormattedDate($post->created_at) }}</td>
+                    <td>{{ $post->getFormattedDate($post->updated_at) }}</td>
                     <td class="d-flex align-items-center justify-content-center">
                         {{-- View post --}}
                         <div class="mr-3">
